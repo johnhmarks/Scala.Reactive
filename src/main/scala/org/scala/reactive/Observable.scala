@@ -1,6 +1,6 @@
 package org.scala.reactive
 
-trait Observable[T] {
+trait Observable[+T] {
 	def subscribe(observer: Observer[T]): Disposable
 }
 
@@ -15,6 +15,18 @@ object Observable {
 	}
 	
 	def value[T](value: T): Observable[T] = {
+		throw new NotImplementedError
+	}
+	
+	def error[T](error: Exception): Observable[T] = {
+		throw new NotImplementedError
+	}
+	
+	def empty[T](): Observable[T] = {
+		throw new NotImplementedError
+	}
+	
+	def never[T](): Observable[T] = {
 		throw new NotImplementedError
 	}
 	  
@@ -36,7 +48,7 @@ object Observable {
 		}
 	}
 	
-	implicit class Map[T](observable: Observable[T]) {
+	implicit class MapExtensions[T](observable: Observable[T]) {
 		def map[U](projection: T => U): Observable[U] = {
 		  throw new NotImplementedError
 		}
