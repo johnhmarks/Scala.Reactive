@@ -13,9 +13,13 @@ object Observable {
 	def create[T](onSubscribe: Observer[T] => () => Unit): Observable[T] = {
 		throw new NotImplementedError
 	}
+	
+	def value[T](value: T): Observable[T] = {
+		throw new NotImplementedError
+	}
 	  
 	implicit class ObservableExtensions[T](observable: Observable[T]) {
-		def subscribe(onNext: T => Unit) {
+	  def subscribe(onNext: T => Unit) {
 		  throw new NotImplementedError
 		}
 		
@@ -32,7 +36,11 @@ object Observable {
 		}
 	}
 	
-	
+	implicit class Map[T](observable: Observable[T]) {
+		def map[U](projection: T => U): Observable[U] = {
+		  throw new NotImplementedError
+		}
+	}
 	
 	implicit class FlatMapExtensions[T](observable: Observable[T]) {
 		def flatMap[U](projection: T => Observable[U]): Observable[U] = {
