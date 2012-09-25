@@ -3,19 +3,19 @@ package org.scala.reactive
 trait Observable[+T] {
 	def subscribe(observer: Observer[T]): Disposable
 	
-	def subscribe(onNext: T => Unit) {
+	def subscribe(onNext: T => Unit): Disposable = {
 	  	subscribe(new AnonymousObserver(onNext))
 	}
 	
-	def subscribe(onNext: T => Unit, onError: Exception => Unit) {
+	def subscribe(onNext: T => Unit, onError: Exception => Unit): Disposable = {
 		subscribe(new AnonymousObserver(onNext, onError))
 	}
 	
-	def subscribe(onNext: T => Unit, onCompleted: () => Unit) {
+	def subscribe(onNext: T => Unit, onCompleted: () => Unit): Disposable = {
 		subscribe(new AnonymousObserver(onNext, onCompleted))
 	}
 	
-	def subscribe(onNext: T => Unit, onError: Exception => Unit, onCompleted: () => Unit) {
+	def subscribe(onNext: T => Unit, onError: Exception => Unit, onCompleted: () => Unit): Disposable = {
 		subscribe(new AnonymousObserver(onNext, onError, onCompleted))
 	}
 }
