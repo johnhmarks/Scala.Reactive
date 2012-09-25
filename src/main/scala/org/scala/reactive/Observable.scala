@@ -2,6 +2,22 @@ package org.scala.reactive
 
 trait Observable[+T] {
 	def subscribe(observer: Observer[T]): Disposable
+	
+	def subscribe(onNext: T => Unit) {
+	  	subscribe(new AnonymousObserver(onNext))
+	}
+	
+	def subscribe(onNext: T => Unit, onError: Exception => Unit) {
+		subscribe(new AnonymousObserver(onNext, onError))
+	}
+	
+	def subscribe(onNext: T => Unit, onCompleted: () => Unit) {
+		subscribe(new AnonymousObserver(onNext, onCompleted))
+	}
+	
+	def subscribe(onNext: T => Unit, onError: Exception => Unit, onCompleted: () => Unit) {
+		subscribe(new AnonymousObserver(onNext, onError, onCompleted))
+	}
 }
 
 object Observable {
@@ -28,24 +44,6 @@ object Observable {
 	
 	def never[T](): Observable[T] = {
 		throw new NotImplementedError
-	}
-	  
-	implicit class ObservableExtensions[T](observable: Observable[T]) {
-	  def subscribe(onNext: T => Unit) {
-		  throw new NotImplementedError
-		}
-		
-		def subscribe(onNext: T => Unit, onError: Exception => Unit) {
-		  throw new NotImplementedError
-		}
-		
-		def subscribe(onNext: T => Unit, onCompleted: => Unit) {
-		  throw new NotImplementedError
-		}
-		
-		def subscribe(onNext: T => Unit, onError: Exception => Unit, onCompleted: => Unit) {
-		  throw new NotImplementedError
-		}
 	}
 	
 	implicit class MapExtensions[T](observable: Observable[T]) {

@@ -1,15 +1,32 @@
 package org.scala.reactive
 
-class AnonymousObserver[T] extends Observer[T] {
-	def onNext(next: T) {
-	  throw new NotImplementedError();
+final class AnonymousObserver[T](
+    private val on: T => Unit,
+    private val oe: Exception => Unit,
+    private val oc: () => Unit)
+    extends ObserverBase[T] {
+	
+	def this(onNext: T => Unit) {
+		this(onNext, Stubs.onError, Stubs.onCompleted)
 	}
 	
-	def onError(error: Exception) {
-	  throw new NotImplementedError();
+	def this(onNext: T => Unit, onCompleted: () => Unit) {
+		this(onNext, Stubs.onError, onCompleted)
+	}
+  
+	def this(onNext: T => Unit, onError: Exception => Unit) {
+		this(onNext, onError, Stubs.onCompleted)
 	}
 	
-	def onCompleted() {
-	  throw new NotImplementedError();
+	protected def next(value: T) = {
+		on(value)
+	}
+	
+	protected def error(error: Exception) = {
+		oe(error)
+	}
+	
+	protected def completed() = {
+		oc()
 	}
 }

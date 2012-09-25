@@ -1,7 +1,7 @@
 package org.scala.reactive
 
 trait Disposable {
-	def close()
+	def dispose()
 }
 
 object Disposable {

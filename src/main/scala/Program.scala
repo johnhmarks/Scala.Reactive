@@ -1,5 +1,6 @@
 import org.scala.reactive.Observable
 
+
 object Program {
   def main(args: Array[String]) {
     println("Hello world")
@@ -7,6 +8,6 @@ object Program {
     val fred = Observable.value(3);
     val subscription = fred.map(x=>x*x)
     	.filter(x=>x<0)
-    	.subscribe((x: Int)=>println(x))
+    	.subscribe(x=>println(x))
   }
 }
