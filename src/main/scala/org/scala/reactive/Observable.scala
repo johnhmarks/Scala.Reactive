@@ -45,34 +45,4 @@ object Observable {
 	def never[T](): Observable[T] = {
 		throw new NotImplementedError
 	}
-	
-	implicit class MapExtensions[T](observable: Observable[T]) {
-		def map[U](projection: T => U): Observable[U] = {
-		  throw new NotImplementedError
-		}
-	}
-	
-	implicit class FlatMapExtensions[T](observable: Observable[T]) {
-		def flatMap[U](projection: T => Observable[U]): Observable[U] = {
-		  throw new NotImplementedError
-		}
-	}
-	
-	implicit class FilterExtensions[T](observable: Observable[T]) {
-		def filter(predicate: T => Boolean): Observable[T] = {
-			throw new NotImplementedError
-		}
-	}
-	
-	implicit class MergeExtensions[T](observable: Observable[T]) {
-		def merge(other: Observable[T]): Observable[T] = {
-		  throw new NotImplementedError
-		}
-	}
-	
-	implicit class AggregateExtensions[T](observable: Observable[T]) {
-		def aggregate(accumulator: (T, T) => T) : Observable[T] = {
-		  throw new NotImplementedError
-		}
-	}
 }

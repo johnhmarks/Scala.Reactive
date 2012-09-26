@@ -1,5 +1,5 @@
 import org.scala.reactive.Observable
-
+import org.scala.reactive.ObservableExtensions._
 
 object Program {
   def main(args: Array[String]) {
@@ -7,7 +7,7 @@ object Program {
     
     val fred = Observable.value(3);
     val fredSubscription = fred.map(x=>x*x)
-    	.filter(x=>x<0)
+    	.withFilter(x=>x<0)
     	.subscribe(x=>println(x))
 
     val dave = for (x <- fred if x > 0) yield x
