@@ -1,5 +1,7 @@
 package org.scala.reactive
 
-class DisposableTests  {
+import org.scalatest._
+
+class DisposableTests extends FunSuite with BeforeAndAfter {
 
 }

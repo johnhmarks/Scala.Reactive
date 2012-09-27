@@ -1,5 +1,7 @@
 package org.scala.reactive
 
-class ObservableTests {
+import org.scalatest._
+
+class ObservableTests extends FunSuite with BeforeAndAfter {
 
 }

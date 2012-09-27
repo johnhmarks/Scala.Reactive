@@ -1,5 +1,7 @@
 package org.scala.reactive
 
-class SchedulerTests {
+import org.scalatest._
+
+class SchedulerTests extends FunSuite with BeforeAndAfter {
 
 }
