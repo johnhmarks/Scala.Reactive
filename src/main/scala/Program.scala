@@ -1,5 +1,5 @@
-import org.scala.reactive.Observable
-import org.scala.reactive.ObservableExtensions._
+import org.scala.reactive.observables.{ObservableExtensions, Observable}
+import ObservableExtensions._
 
 object Program {
   def main(args: Array[String]) {
